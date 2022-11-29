@@ -11,7 +11,8 @@ export default function PDP(){
 
     // usecontext for currency change
     const {selected} = useContext(CurrencyContext)
-    const {onAdd, Data} = useContext(CartItems)
+    const {onAdd, Data, setSelectedBtnValue, selectedBtnValue } = useContext(CartItems)
+
 
 
     // change main image
@@ -77,10 +78,9 @@ export default function PDP(){
                         <h1 className="product-name">{Data.name}</h1>
                         <div className="product-attributes">
                             {Data.attributes.map(attributes=>(
-                                    <div>
-                                            
+                                    <div>         
                                         <h1 className="product-size">{attributes.name}:</h1>
-                                        <div className="product-buttons" id={attributes.id}>{attributes.items.map(items=>(
+                                        <div className="product-buttons" onChange={(value) => setSelectedBtnValue(value.target.value)} id={attributes.id}>{attributes.items.map(items=>(
                                             <div>
                                                 <input 
                                                     value={items.value}
@@ -100,7 +100,7 @@ export default function PDP(){
                         </div>
                         <h1 className="product-info-price">Price:</h1>
                         <h1 className="product-info-price-amount">{currencyHandler()}</h1>
-                        <button onClick={Data.inStock ? () => onAdd(Data) : ""} className={Data.inStock ?"add-to-cart-btn" : "cant-add-to-cart-btn"}>{Data.inStock ? "ADD TO CART" : "OUT OF STOCK"}</button>
+                        <button onClick={Data.inStock ? () => onAdd(Data, selectedBtnValue) : ""} className={Data.inStock ?"add-to-cart-btn" : "cant-add-to-cart-btn"}>{Data.inStock ? "ADD TO CART" : "OUT OF STOCK"}</button>
                         <Markup className="product-description" content={articleContent} />
                     </div>
                     

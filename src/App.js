@@ -4,7 +4,7 @@ import SharedLayout from "./SharedLayout"
 import All from "./pages/All"
 import Tech from "./pages/Tech"
 import Clothes from "./pages/Clothes"
-import "./app.css"
+import "./App.css"
 import PDP from "./pages/PDP"
 import CartPage from "./pages/CartPage"
 

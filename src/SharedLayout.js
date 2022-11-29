@@ -20,19 +20,23 @@ export default function SharedLayout(){
 
     // using this state with empty array to add items
     const [cartItems, setCartItems] = useState([])
+    // using this array to pass btn values
+    const {selectedBtnValue, setSelectedBtnValue} = useState()
 
     // function that adds items inside the cart 
-    const onAdd = (Data) =>{
+    const onAdd = (Data, size) =>{
         const exist = cartItems.find((x)=> x.id === Data.id)
         if(exist){
             setCartItems(
-                cartItems.map(x => x.id === Data.id ? {...exist, qty: exist.qty + 1} : x    
+                cartItems.map(x => x.id === Data.id ? {...exist, size, qty: exist.qty + 1} : x    
                 )
             )
         } else{
-            setCartItems([...cartItems, {...Data, qty: 1}])
+            setCartItems([...cartItems, {...Data, size, qty: 1}])
         }
+        
     }
+
     // function that removes items 
     const onRemove = (Data) => {
         const exist = cartItems.find((x)=> x.id === Data.id)
@@ -47,7 +51,7 @@ export default function SharedLayout(){
 
     return(
         <div>
-            <CartItems.Provider value={{cartItems,setCartItems, onAdd, Data, onRemove}}>
+            <CartItems.Provider value={{cartItems,setCartItems, onAdd, Data, onRemove, selectedBtnValue, setSelectedBtnValue}}>
                 <CurrencyContext.Provider value={{selected, setSelected}}>
                     <Navbar />
                     <Outlet />

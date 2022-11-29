@@ -114,6 +114,29 @@ export default function Cart(){
                                                     </>
                                                     )
                                             }</h1>
+                                            {item.attributes.map(attributes =>(
+                                                <div>
+                                                    <h1 className="cart-attribute-name">{attributes.name}:</h1>
+                                                    <div className="cart-attribute-btns" id={attributes.id}>{attributes.items.map(items=>(
+                                                        <div>
+                                                            <input  
+                                                                className={attributes.id}
+                                                                name={attributes.name + item.name} 
+                                                                id={attributes.id + items.id + item.name}
+                                                                type={"radio"}
+                                                                defaultChecked={String(items.value) === String(items.size)}
+                                                                >
+                                                            </input>
+                                                            <label 
+                                                                for={attributes.id + items.id + item.name }
+                                                                style={{backgroundColor: `${items.value}`, color: `${items.value}`, width:"24px", height:"24px"}}>
+                                                                {items.value}
+                                                            </label>
+                                                        </div>
+                                                        
+                                                    ))}</div>
+                                                </div>
+                                            ))}
                                             
                                         </div>
 

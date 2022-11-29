@@ -85,7 +85,6 @@ export default function CartPage(){
                                                     <div className="cart-page-attribute-btns" id={attributes.id}>{attributes.items.map(items=>(
                                                         <div>
                                                             <input 
-                                                                
                                                                 name={attributes.name + item.name} 
                                                                 id={attributes.id + items.id + item.name}
                                                                 type={"radio"}>
