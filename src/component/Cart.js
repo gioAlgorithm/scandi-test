@@ -124,12 +124,12 @@ export default function Cart(){
                                                                 name={attributes.name + item.name} 
                                                                 id={attributes.id + items.id + item.name}
                                                                 type={"radio"}
-                                                                defaultChecked={String(items.value) === String(items.size)}
+                                                                defaultChecked={String(items.value) === String(item.selectedValue)}
                                                                 >
                                                             </input>
                                                             <label 
                                                                 for={attributes.id + items.id + item.name }
-                                                                style={{backgroundColor: `${items.value}`, color: `${items.value}`, width:"24px", height:"24px"}}>
+                                                                style={{backgroundColor: `${items.value}`, color: `${items.value}`, width:"28px", height:"28px"}}>
                                                                 {items.value}
                                                             </label>
                                                         </div>

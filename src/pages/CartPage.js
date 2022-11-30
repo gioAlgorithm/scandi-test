@@ -87,7 +87,10 @@ export default function CartPage(){
                                                             <input 
                                                                 name={attributes.name + item.name} 
                                                                 id={attributes.id + items.id + item.name}
-                                                                type={"radio"}>
+                                                                type={"radio"}
+                                                                defaultChecked={String(items.value) || String(items.id) === String(item.selectedValue)}
+                                                                >
+                                                                
                                                             </input>
                                                             <label for={attributes.id + items.id + item.name } style={{backgroundColor: `${items.value}`, color: `${items.value}`}}>
                                                                 {items.value}

@@ -102,8 +102,7 @@ export default function PDP(){
                         <h1 className="product-info-price-amount">{currencyHandler()}</h1>
                         <button onClick={Data.inStock ? () => onAdd(Data, selectedBtnValue) : ""} className={Data.inStock ?"add-to-cart-btn" : "cant-add-to-cart-btn"}>{Data.inStock ? "ADD TO CART" : "OUT OF STOCK"}</button>
                         <Markup className="product-description" content={articleContent} />
-                    </div>
-                    
+                    </div>      
                 </>
             )}  
             </div>   

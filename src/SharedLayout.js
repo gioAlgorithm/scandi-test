@@ -21,18 +21,18 @@ export default function SharedLayout(){
     // using this state with empty array to add items
     const [cartItems, setCartItems] = useState([])
     // using this array to pass btn values
-    const {selectedBtnValue, setSelectedBtnValue} = useState()
+    const [selectedBtnValue, setSelectedBtnValue] = useState()
 
     // function that adds items inside the cart 
-    const onAdd = (Data, size) =>{
+    const onAdd = (Data,selectedValue) =>{
         const exist = cartItems.find((x)=> x.id === Data.id)
         if(exist){
             setCartItems(
-                cartItems.map(x => x.id === Data.id ? {...exist, size, qty: exist.qty + 1} : x    
+                cartItems.map(x => x.id === Data.id && selectedBtnValue ? {...exist, selectedValue, qty: exist.qty + 1} : x    
                 )
             )
         } else{
-            setCartItems([...cartItems, {...Data, size, qty: 1}])
+            setCartItems([...cartItems, {...Data, selectedValue, qty: 1}])
         }
         
     }
