@@ -13,7 +13,7 @@ export default function CartPage(){
     }
 
     //state of cart items
-    const {cartItems, onAdd, onRemove} = useContext(CartItems)
+    const {cartItems, onAdd, onRemove, onChangeSelectedValue} = useContext(CartItems)
 
     const {selected} = useContext(CurrencyContext)
 
@@ -82,13 +82,14 @@ export default function CartPage(){
                                             {item.attributes.map(attributes =>(
                                                 <div>
                                                     <h1 className="cart-page-attribute-name">{attributes.name}:</h1>
-                                                    <div className="cart-page-attribute-btns" id={attributes.id}>{attributes.items.map(items=>(
+                                                    <div className="cart-page-attribute-btns" onChange={(e) => onChangeSelectedValue(item.id, e.target.value)} id={attributes.id}>{attributes.items.map(items=>(
                                                         <div>
                                                             <input 
+                                                                value={items.value}
                                                                 name={attributes.name + item.name} 
                                                                 id={attributes.id + items.id + item.name}
                                                                 type={"radio"}
-                                                                defaultChecked={String(items.value) || String(items.id) === String(item.selectedValue)}
+                                                                defaultChecked={String(items.value) === String(item.selectedValue) }
                                                                 >
                                                                 
                                                             </input>

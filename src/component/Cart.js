@@ -5,10 +5,12 @@ import "./css/component-style.css"
 import { CartItems } from "../context/CartItems";
 import { Link } from "react-router-dom";
 import { CurrencyContext } from "../context/currencyContext";
+import { useLocation } from "react-router-dom";
 
 
 
 export default function Cart(){
+    const location = useLocation();
 
     // alert for button
     function alertMessage(){
@@ -16,7 +18,7 @@ export default function Cart(){
     }
 
     //state of cart items
-    const {cartItems, onAdd, onRemove} = useContext(CartItems)
+    const {cartItems, onAdd, onRemove, onChangeSelectedValue} = useContext(CartItems)
 
     const {selected} = useContext(CurrencyContext)
 
@@ -75,8 +77,8 @@ export default function Cart(){
 
 
             {
-                // whenever dropdown is truthy
-                dropdown && (
+                // whenever dropdown is truthy and if user is on cartpage, cart is false
+                dropdown && location.pathname !== "/cart" && (
                     <div className="cart__dropdown">
                         <div className="inner-cart">
                             <h3 className="my-bag">my bag</h3>
@@ -117,9 +119,10 @@ export default function Cart(){
                                             {item.attributes.map(attributes =>(
                                                 <div>
                                                     <h1 className="cart-attribute-name">{attributes.name}:</h1>
-                                                    <div className="cart-attribute-btns" id={attributes.id}>{attributes.items.map(items=>(
+                                                    <div className="cart-attribute-btns" onChange={(e) => onChangeSelectedValue(item.id, e.target.value)} id={attributes.id}>{attributes.items.map(items=>(
                                                         <div>
                                                             <input  
+                                                                value={items.value}
                                                                 className={attributes.id}
                                                                 name={attributes.name + item.name} 
                                                                 id={attributes.id + items.id + item.name}

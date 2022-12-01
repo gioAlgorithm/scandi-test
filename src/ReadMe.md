@@ -1,1 +1,1 @@
-<!-- only thing that doesn't work is Card.js cart-button -->
+<!-- card.js cart button doesnt work, also cart need some work as well... its beyond my knowledge LOL, what i really need is feedback -->

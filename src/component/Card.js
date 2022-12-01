@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import "./css/card.css"
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { CartItems } from "../context/CartItems";
 
 
 
 export default function Card(props){
 
+    const {onAdd, Data, selectedBtnValue } = useContext(CartItems)
 
     return(
         <div className="card" key={props.id}>

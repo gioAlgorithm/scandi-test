@@ -28,7 +28,7 @@ export default function SharedLayout(){
         const exist = cartItems.find((x)=> x.id === Data.id)
         if(exist){
             setCartItems(
-                cartItems.map(x => x.id === Data.id && selectedBtnValue ? {...exist, selectedValue, qty: exist.qty + 1} : x    
+                cartItems.map(x => x.id === Data.id  ? {...exist, selectedValue, qty: exist.qty + 1} : x    
                 )
             )
         } else{
@@ -47,11 +47,21 @@ export default function SharedLayout(){
             setCartItems(cartItems.map((x)=> x.id === Data.id ? {...exist, qty: exist.qty - 1} : x))
         }
     }
+
+    const onChangeSelectedValue = (id, selectedValue) => {
+        setCartItems(
+          cartItems.map((item) => {
+            if (item.id !== id) return item;
+    
+            return { ...item, selectedValue };
+          })
+        );
+      };
     
 
     return(
         <div>
-            <CartItems.Provider value={{cartItems,setCartItems, onAdd, Data, onRemove, selectedBtnValue, setSelectedBtnValue}}>
+            <CartItems.Provider value={{cartItems,setCartItems, onAdd, Data, onRemove, selectedBtnValue, setSelectedBtnValue, onChangeSelectedValue}}>
                 <CurrencyContext.Provider value={{selected, setSelected}}>
                     <Navbar />
                     <Outlet />
